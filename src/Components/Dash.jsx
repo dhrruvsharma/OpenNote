@@ -18,7 +18,6 @@ const Dash = () => {
     const [newDesc, setNewDesc] = useState("");
     const [newLabel, setNewLabel] = useState("");
     const [selected, setSelected] = useState("");
-    const [changed,setChanged] = useState(false);
 
     const Get = async () => {
         setLoad(true);
