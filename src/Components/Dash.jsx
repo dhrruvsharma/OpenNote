@@ -11,8 +11,8 @@ const Dash = () => {
     const [data, setData] = useState([]);
     const baseUrl = import.meta.env.VITE_BASE;
     const [load, setLoad] = useState(false);
-    const [offset, setOffset] = useState(parseInt(localStorage.getItem?.("offset"),10) || 0);
-    const [page, setPage] = useState(parseInt(localStorage.getItem("page"),10) || 1);
+    const [offset, setOffset] = useState(0);
+    const [page, setPage] = useState(1);
     const [edit, setEdit] = useState(false);
     const [newTitle, setNewTitle] = useState("");
     const [newDesc, setNewDesc] = useState("");
@@ -36,8 +36,6 @@ const Dash = () => {
     }
 
     useEffect(() => {
-        localStorage.setItem("offset",offset);
-        localStorage.setItem("page",page);
         Get();
     }, [offset])
 
