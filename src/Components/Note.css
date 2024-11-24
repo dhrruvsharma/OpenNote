@@ -1,0 +1,57 @@
+.card{
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.pinned{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.2rem;
+}
+#color{
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    outline: none;
+    appearance: none;
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+}
+.card:hover #color{
+    display: block;
+    cursor: pointer;
+    opacity: 1;
+    z-index: 10;
+}
+.card p,h1,span{
+    padding: 10px;
+}
+.card p,span{
+    font-size: 1.4rem;
+}
+.title h1{
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+.labels{
+    display: flex;
+    align-items: flex-start;
+    span{
+        background-color: white;
+        margin: 0 0 5px 10px;
+        border-radius: 10px;
+        padding: 5px;
+        font-size: 1rem;
+    }
+}
+hr{
+    margin: 0 10px;
+    border: 1px solid black;
+}
+.edit{
+    position: absolute;
+}

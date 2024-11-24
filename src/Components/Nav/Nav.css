@@ -1,0 +1,13 @@
+.nav h1{
+    color: white;
+    margin-left: 10px;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.nav-main hr{
+    border: 1px solid white;
+    margin: 0 20px;
+}

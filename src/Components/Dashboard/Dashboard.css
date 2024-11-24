@@ -1,0 +1,29 @@
+.dashboard{
+    display: grid;
+    grid-template-areas:
+    "nav nav nav nav"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main";
+}
+.navigation{
+    grid-area: nav;
+}
+.dash-sidebar{
+    grid-area: sidebar;
+    height: 100%;
+    max-width: fit-content;
+}
+.main{
+    grid-area: main;
+}
+.dashboard{
+    height: 100vh;
+}
