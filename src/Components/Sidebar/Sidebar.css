@@ -28,3 +28,8 @@
 .active a{
     color: black;
 }
+@media (max-width: 700px) {
+    .sidebar{
+        margin-top: 10px;
+    }
+}

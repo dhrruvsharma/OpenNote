@@ -43,7 +43,7 @@ const Dash = () => {
         Get();
     }, [offset])
 
-    const HandleClick = (title, desc, labels, id, pinned,e) => {
+    const HandleClick = (title, desc, labels, id, pinned, e) => {
         setEdit(true);
         setSelected(id);
         setNewDesc(desc);
@@ -95,17 +95,19 @@ const Dash = () => {
                     <Loader />
                 </div>
                 :
-                <div className="main-container">
-                    {data?.map((item, index) => {
-                        return (
-                            <div className="card-container" key={index} onClick={(e) => { HandleClick(item.title, item.description, item.labels, item.id, item.pinned,e) }}>
-                                <Note title={item.title} description={item.description} labels={item.labels} date={item.created_at} pinned={item.pinned} color={item.color} id={item.id} setData={setData} setLoad={setLoad} setError={setError} setMessage={setMessage} offset={offset} />
-                            </div>
-                        )
-                    })}
-                    {data?.length < 6 && (
-                        <br />
-                    )}
+                <>
+                    <div className="main-container">
+                        {data?.map((item, index) => {
+                            return (
+                                <div className="card-container" key={index} onClick={(e) => { HandleClick(item.title, item.description, item.labels, item.id, item.pinned, e) }}>
+                                    <Note title={item.title} description={item.description} labels={item.labels} date={item.created_at} pinned={item.pinned} color={item.color} id={item.id} setData={setData} setLoad={setLoad} setError={setError} setMessage={setMessage} offset={offset} />
+                                </div>
+                            )
+                        })}
+                        {data?.length < 6 && (
+                            <br />
+                        )}
+                    </div>
                     <div className="wrapper">
                         <div className="pagination">
                             {page > 1 && (
@@ -123,11 +125,11 @@ const Dash = () => {
                             <h1 className="nodata">Nothing to display... <Link to={'/create'}>Add a note?</Link></h1>
                         )}
                     </div>
-                </div>
+                </>
             }
             {edit && (
                 <Overlay setDisplay={setEdit}>
-                    <form className="edit" onSubmit={HandleSubmit} onClick={(e) => {e.stopPropagation();}}>
+                    <form className="edit" onSubmit={HandleSubmit} onClick={(e) => { e.stopPropagation(); }}>
                         <label htmlFor="title">Title</label>
                         <input type="text" name="title" id="title" autoComplete="off" onChange={HandleEdit} value={newTitle} />
                         <label htmlFor="desc">Description</label>

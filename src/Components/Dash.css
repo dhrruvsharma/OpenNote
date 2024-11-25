@@ -18,9 +18,6 @@
     button{
         cursor: pointer;
     }
-    position: absolute;
-    bottom: 5vh;
-    right: 5vh;
 }
 .pagination span,button{
     padding:5px;
@@ -45,6 +42,9 @@
     width: 100%;
     color: white;
     text-decoration: none;
+}
+.nodata{
+    padding-left: 20%;
 }
 .wrapper{
     display: flex;
@@ -93,4 +93,32 @@
     }
     padding: 10px;
     border-radius: 10px;
+}
+@media (max-width: 700px) {
+    .main-container{
+        overflow: scroll;
+        grid-template-columns: repeat(1,1fr);
+        margin-top: 10px;
+        max-height: 80vh;
+        margin-right: 3vw;
+    }
+    .wrapper{
+        margin-top: 10px;
+    }
+    div.main-container::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    div.main-container::-webkit-scrollbar-track {
+        background: black;
+        border-radius: 10px;
+    }
+    
+    div.main-container::-webkit-scrollbar-thumb {
+        background: white;
+        border-radius: 10px;
+    }
+    .main-container > div{
+        margin-right: 10px;
+    }
 }

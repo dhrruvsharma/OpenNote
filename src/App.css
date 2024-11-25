@@ -8,6 +8,7 @@ html,body,#root{
   min-height: 100vh;
   background-color: #202124;
   font-family: "Lato",serif;
+  min-width: 100dvw;
 }
 #root{
   position: relative;

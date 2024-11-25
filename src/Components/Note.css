@@ -73,12 +73,23 @@ hr{
         width: 100%;
     }
 }
-i{
+.fa{
     opacity: 0;
     transition: opacity .5s ease-in-out;
     z-index: 11;
     pointer-events: all;
+    display: none;
 }
 .card:hover i{
     opacity: 1;
+    display: inline-block;
+}
+@media(max-width: 700px) {
+    .fa{
+        display: inline-block;
+        opacity: 1;
+    }
+    #color{
+        opacity: 1;
+    }
 }
