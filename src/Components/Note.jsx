@@ -79,11 +79,13 @@ const Note = ({ title, date, description, pinned, labels, color, id, setData, se
                     <p>{description}</p>
                     <p className="pinned">{pinned && (<span>&#128204;</span>)}</p>
                     <div className="labels">
-                        {labelList.map((item, index) => (
-                            <span className="label" key={index}>{item}&nbsp;</span>
-                        ))}
+                        <div className="lab">
+                            {labelList.map((item, index) => (
+                                <span className="label" key={index}>{item}&nbsp;</span>
+                            ))}
+                        </div>
+                        <input type="color" name="color" id="color" onChange={HandleColor} onClick={(e) => { e.stopPropagation() }} />
                     </div>
-                    <input type="color" name="color" id="color" onChange={HandleColor} onClick={(e) => { e.stopPropagation() }} />
                 </div>
             </div>
             {del && (

@@ -38,7 +38,8 @@
 }
 .labels{
     display: flex;
-    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
     span{
         background-color: white;
         margin: 0 0 5px 10px;
@@ -46,6 +47,10 @@
         padding: 5px;
         font-size: 1rem;
     }
+    padding-right: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+    gap: 10xp;   
 }
 hr{
     margin: 0 10px;
@@ -91,5 +96,10 @@ hr{
     }
     #color{
         opacity: 1;
+    }
+}
+@media (max-width: 400px) {
+    #color{
+        position: static;   
     }
 }
