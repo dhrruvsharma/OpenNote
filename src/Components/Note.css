@@ -55,3 +55,22 @@ hr{
 .edit{
     position: absolute;
 }
+.delete-container{
+    position: absolute;
+    top: 30%;
+    background: white;
+    z-index: 10;
+    left: 40%;
+    button{
+        background: black;
+        color: white;
+        cursor: pointer;
+    }
+    padding: 10px;
+    border-radius: 10px;
+    .buttons{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+}

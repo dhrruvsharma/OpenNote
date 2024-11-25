@@ -18,7 +18,9 @@ const Dash = () => {
     const [newDesc, setNewDesc] = useState("");
     const [newLabel, setNewLabel] = useState("");
     const [selected, setSelected] = useState("");
-
+    const [message,setMessage] = useState("An unexpected error occured");
+    const [error,setError] = useState(false);
+    const [pinned,setNewPinned] = useState(false);
     const Get = async () => {
         setLoad(true);
         try {
@@ -30,6 +32,7 @@ const Dash = () => {
             setData(response.data.notes)
         } catch (error) {
             console.error(error);
+            setError(true);
         } finally {
             setLoad(false);
         }
@@ -39,12 +42,13 @@ const Dash = () => {
         Get();
     }, [offset])
 
-    const HandleClick = (title, desc, labels, id) => {
+    const HandleClick = (title, desc, labels, id,pinned) => {
         setEdit(true);
         setSelected(id);
         setNewDesc(desc);
         setNewTitle(title);
         setNewLabel(labels);
+        setNewPinned(pinned);
     }
 
     const HandleEdit = (e) => {
@@ -74,6 +78,7 @@ const Dash = () => {
             console.log(response.data);
         } catch(error) {
             console.error(error);
+            setError(true);
         } finally{
             setLoad(false);
             Get();
@@ -90,8 +95,8 @@ const Dash = () => {
                 <div className="main-container">
                     {data?.map((item, index) => {
                         return (
-                            <div className="card-container" key={index} onClick={() => { HandleClick(item.title, item.description, item.labels, item.id) }}>
-                                <Note title={item.title} description={item.description} labels={item.labels} date={item.created_at} pinned={item.pinned} color={item.color} id={item.id} />
+                            <div className="card-container" key={index} onClick={() => { HandleClick(item.title, item.description, item.labels, item.id,item.pinned) }}>
+                                <Note title={item.title} description={item.description} labels={item.labels} date={item.created_at} pinned={item.pinned} color={item.color} id={item.id} setData={setData} setLoad={setLoad} setError={setError} setMessage={setMessage} offset={offset}/>
                             </div>
                         )
                     })}
@@ -125,11 +130,21 @@ const Dash = () => {
                     <input type="text" name="desc" id="desc" autoComplete="off" onChange={HandleEdit} value={newDesc} />
                     <label htmlFor="labels">Labels</label>
                     <input type="text" name="labels" id="labels" autoComplete="off" onChange={HandleEdit} value={newLabel} />
+                    <div className="checkbox">
+                        <input type="checkbox" name="pinned" id="pinned" checked={pinned} onClick={() => {setNewPinned(!pinned)}}/>
+                        <label htmlFor="pinned">Pin this note?</label>
+                    </div>
                     <div className="buttons">
                         <button type="submit">Edit</button>
                         <button onClick={() => { setEdit(false) }}>Close</button>
                     </div>
                 </form>
+            )}
+            {error && (
+                <div className="error">
+                    <h1>{message}</h1>
+                    <button onClick={(e) => {setError(false); e.stopPropagation();}}>Close</button>
+                </div>
             )}
         </>
     )

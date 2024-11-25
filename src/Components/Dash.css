@@ -18,6 +18,9 @@
     button{
         cursor: pointer;
     }
+    position: absolute;
+    bottom: 5vh;
+    right: 5vh;
 }
 .pagination span,button{
     padding:5px;
@@ -76,4 +79,18 @@
     position:absolute;
     top: 20%;
     left: 40%;
+}
+.error{
+    position: absolute;
+    top: 30%;
+    background: white;
+    z-index: 10;
+    left: 40%;
+    button{
+        background: black;
+        color: white;
+        cursor: pointer;
+    }
+    padding: 10px;
+    border-radius: 10px;
 }
