@@ -9,3 +9,6 @@ html,body,#root{
   background-color: #202124;
   font-family: "Lato",serif;
 }
+#root{
+  position: relative;
+}

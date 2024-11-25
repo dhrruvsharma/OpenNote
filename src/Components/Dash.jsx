@@ -5,6 +5,7 @@ import Note from "./Note";
 import "./Dash.css"
 import Loader from "./Loader/Loader";
 import { Link } from "react-router-dom";
+import Overlay from "./Overlay/Overlay";
 
 const Dash = () => {
 
@@ -18,9 +19,9 @@ const Dash = () => {
     const [newDesc, setNewDesc] = useState("");
     const [newLabel, setNewLabel] = useState("");
     const [selected, setSelected] = useState("");
-    const [message,setMessage] = useState("An unexpected error occured");
-    const [error,setError] = useState(false);
-    const [pinned,setNewPinned] = useState(false);
+    const [message, setMessage] = useState("An unexpected error occured");
+    const [error, setError] = useState(false);
+    const [pinned, setNewPinned] = useState(false);
     const Get = async () => {
         setLoad(true);
         try {
@@ -42,13 +43,14 @@ const Dash = () => {
         Get();
     }, [offset])
 
-    const HandleClick = (title, desc, labels, id,pinned) => {
+    const HandleClick = (title, desc, labels, id, pinned,e) => {
         setEdit(true);
         setSelected(id);
         setNewDesc(desc);
         setNewTitle(title);
         setNewLabel(labels);
         setNewPinned(pinned);
+        e.stopPropagation();
     }
 
     const HandleEdit = (e) => {
@@ -68,18 +70,19 @@ const Dash = () => {
         e.preventDefault();
         setLoad(true);
         setEdit(false);
-        try{
-            const response = await axios.post(`${baseUrl}/edit`,{
+        try {
+            const response = await axios.post(`${baseUrl}/edit`, {
                 title: newTitle,
                 description: newDesc,
                 labels: newLabel,
-                id: selected
+                id: selected,
+                pinned: pinned
             })
             console.log(response.data);
-        } catch(error) {
+        } catch (error) {
             console.error(error);
             setError(true);
-        } finally{
+        } finally {
             setLoad(false);
             Get();
         }
@@ -95,8 +98,8 @@ const Dash = () => {
                 <div className="main-container">
                     {data?.map((item, index) => {
                         return (
-                            <div className="card-container" key={index} onClick={() => { HandleClick(item.title, item.description, item.labels, item.id,item.pinned) }}>
-                                <Note title={item.title} description={item.description} labels={item.labels} date={item.created_at} pinned={item.pinned} color={item.color} id={item.id} setData={setData} setLoad={setLoad} setError={setError} setMessage={setMessage} offset={offset}/>
+                            <div className="card-container" key={index} onClick={(e) => { HandleClick(item.title, item.description, item.labels, item.id, item.pinned,e) }}>
+                                <Note title={item.title} description={item.description} labels={item.labels} date={item.created_at} pinned={item.pinned} color={item.color} id={item.id} setData={setData} setLoad={setLoad} setError={setError} setMessage={setMessage} offset={offset} />
                             </div>
                         )
                     })}
@@ -123,28 +126,32 @@ const Dash = () => {
                 </div>
             }
             {edit && (
-                <form className="edit" onSubmit={HandleSubmit}>
-                    <label htmlFor="title">Title</label>
-                    <input type="text" name="title" id="title" autoComplete="off" onChange={HandleEdit} value={newTitle} />
-                    <label htmlFor="desc">Description</label>
-                    <input type="text" name="desc" id="desc" autoComplete="off" onChange={HandleEdit} value={newDesc} />
-                    <label htmlFor="labels">Labels</label>
-                    <input type="text" name="labels" id="labels" autoComplete="off" onChange={HandleEdit} value={newLabel} />
-                    <div className="checkbox">
-                        <input type="checkbox" name="pinned" id="pinned" checked={pinned} onClick={() => {setNewPinned(!pinned)}}/>
-                        <label htmlFor="pinned">Pin this note?</label>
-                    </div>
-                    <div className="buttons">
-                        <button type="submit">Edit</button>
-                        <button onClick={() => { setEdit(false) }}>Close</button>
-                    </div>
-                </form>
+                <Overlay setDisplay={setEdit}>
+                    <form className="edit" onSubmit={HandleSubmit} onClick={(e) => {e.stopPropagation();}}>
+                        <label htmlFor="title">Title</label>
+                        <input type="text" name="title" id="title" autoComplete="off" onChange={HandleEdit} value={newTitle} />
+                        <label htmlFor="desc">Description</label>
+                        <textarea name="desc" id="desc" value={newDesc} onChange={HandleEdit}></textarea>
+                        <label htmlFor="labels">Labels</label>
+                        <input type="text" name="labels" id="labels" autoComplete="off" onChange={HandleEdit} value={newLabel} />
+                        <div className="checkbox">
+                            <input type="checkbox" name="pinned" id="pinned" defaultChecked={pinned} onClick={() => { setNewPinned(!pinned) }} />
+                            <label htmlFor="pinned">Pin this note?</label>
+                        </div>
+                        <div className="buttons">
+                            <button type="submit">Edit</button>
+                            <button onClick={() => { setEdit(false) }}>Close</button>
+                        </div>
+                    </form>
+                </Overlay>
             )}
             {error && (
-                <div className="error">
-                    <h1>{message}</h1>
-                    <button onClick={(e) => {setError(false); e.stopPropagation();}}>Close</button>
-                </div>
+                <Overlay>
+                    <div className="error">
+                        <h1>{message}</h1>
+                        <button onClick={(e) => { setError(false); e.stopPropagation(); }}>Close</button>
+                    </div>
+                </Overlay>
             )}
         </>
     )
