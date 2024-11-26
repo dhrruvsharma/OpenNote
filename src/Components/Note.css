@@ -103,3 +103,34 @@ hr{
         position: static;   
     }
 }
+@media (max-width: 1100px) {
+    .delete-container{
+        left: 20%;
+    }
+}
+@media (max-width: 700px) {
+    .delete-container{
+        h1{
+            font-size: 1.5rem;
+        }
+        button{
+            font-size: 1.2rem;
+        }
+    }
+}
+@media (max-width: 600px) {
+    .delete-container{
+        left: 15%;
+    }
+}
+@media (max-width: 550px) {
+    .delete-container{
+        left: 20%;
+        h1{
+            font-size: 1rem;
+        }
+        button{
+            font-size: 1rem;
+        }
+    }
+}
