@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 const Test = () => {
     const Fetch = async () => {
         try {
-            const response = await axios.post(`http://www.arthkambhoj.me.:8080/api/v1/auth/register`, {
+            const response = await axios.post(`https://webgrowproject-1.onrender.com/api/v1/auth/register`, {
                 "firstname": "aakarsh",
                 "lastname": "kamboj",
                 "email": "singhaakarsh54321@gmail.com",
