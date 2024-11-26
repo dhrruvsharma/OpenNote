@@ -99,3 +99,30 @@ textarea{
     top: 0;
     left: 0;
 }
+@media (max-width: 550px) {
+    .create-container{
+        margin: 0;
+    }
+    .create-pop{
+        left: 15%;
+        h1{
+            font-size: 1.5rem;
+            padding-left: 0;
+        }
+        button{
+            font-size: 1.2rem;
+        }
+    }
+}
+@media (max-width: 750px) {
+    .create-pop{
+        left: 35%;
+        h1{
+            font-size: 1.5rem;
+            padding-left: 0;
+        }
+        button{
+            font-size: 1.2rem;
+        }
+    }
+}

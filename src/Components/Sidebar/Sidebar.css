@@ -4,7 +4,7 @@
     align-items: flex-start;
     color: white;
     height: 100%;
-    margin-left: 20px;
+    margin: 10px 0;
     max-width: 100%;
     margin-top: 20px;
 }
@@ -32,10 +32,5 @@
 @media (max-width: 700px) {
     .sidebar{
         margin-top: 10px;
-    }
-}
-@media (max-width: 450px) {
-    .sidebar{
-        margin: 10px 0;
     }
 }
