@@ -131,9 +131,9 @@ const Dash = () => {
                 <Overlay setDisplay={setEdit}>
                     <form className="edit" onSubmit={HandleSubmit} onClick={(e) => { e.stopPropagation(); }}>
                         <label htmlFor="title">Title</label>
-                        <input type="text" name="title" id="title" autoComplete="off" onChange={HandleEdit} value={newTitle} />
+                        <input type="text" name="title" id="title" autoComplete="off" onChange={HandleEdit} value={newTitle} required/>
                         <label htmlFor="desc">Description</label>
-                        <textarea name="desc" id="desc" value={newDesc} onChange={HandleEdit}></textarea>
+                        <textarea name="desc" id="desc" value={newDesc} onChange={HandleEdit} required></textarea>
                         <label htmlFor="labels">Labels</label>
                         <input type="text" name="labels" id="labels" autoComplete="off" onChange={HandleEdit} value={newLabel} />
                         <div className="checkbox">
