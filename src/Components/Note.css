@@ -2,6 +2,11 @@
     border-radius: 20px;
     position: relative;
     cursor: pointer;
+    transition: transform .5s ease-in-out,box-shadow .5s ease-in-out;
+}
+.card:hover{
+    transform: scale(1.01);
+    box-shadow: white 4px 4px 4px;
 }
 .pinned{
     position: absolute;
@@ -96,6 +101,10 @@ hr{
     }
     #color{
         opacity: 1;
+    }
+    .card:hover{
+        transform: scale(1);
+        box-shadow: white 4px 4px 4px;
     }
 }
 @media (max-width: 400px) {
